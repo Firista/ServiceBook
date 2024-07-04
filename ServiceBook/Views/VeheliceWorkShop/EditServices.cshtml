@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "EditServices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Wybór usług:</h5>
+        <div class="card-body Register-Card-Body">
+
+            @foreach (var serv in ViewBag.Services)
+            {
+            if (serv.isChosen == false)
+            {
+            <form action="@Url.Action(" AddService","VeheliceWorkShop")" method="post">
+                <ul class="list-group list-group-flush tekstNaSrodku table alight: center">
+                    <li class="list-group-item tloTabelkiWarsztatu"><p>@serv.service.serviceName</p></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><button type="submit" value="@serv.service.serviceId" name="serviceId" class="btn btn-secondary respansywnyButton"><p>Dodaj powyższą usługę</p></button></li>
+                </ul>
+            </form>
+            }
+            else if (serv.isChosen == true)
+            {
+            <form action="@Url.Action(" DeleteService","VeheliceWorkShop")" method="post">
+                <ul class="list-group list-group-flush tekstNaSrodku table alight: center">
+                    <li class="list-group-item tloTabelkiWarsztatu"><p>@serv.service.serviceName</p></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><button type="submit" value="@serv.service.serviceId" name="serviceId" class="btn btn-secondary respansywnyButton"><p>Usuń powyższą usługę</p></button></li>
+                </ul>
+            </form>
+            }
+            }
+        </div>
+    </div>
+</section>

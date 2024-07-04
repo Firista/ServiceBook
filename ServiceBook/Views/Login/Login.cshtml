@@ -1,0 +1,34 @@
+﻿@model ServiceBook.Models.Users
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12  marginesy">
+
+    <div class="card col-5 Register-Card mx-auto  marginesy">
+        <h5 class="card-header Register-Card-Header">Zaloguj się</h5>
+        <div class="card-body Register-Card-Body">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                @Html.LabelFor(x => x.email, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                @Html.LabelFor(x => x.password, new { @class = "label label-default" })
+
+                @Html.PasswordFor(x => x.password, new { @class = "form-control" })
+
+            </div>
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <input type="submit" value="Zaloguj" class="btn btn-secondary respansywnyButton" />
+            </div>
+            }
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,23 @@
+﻿
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Edytuj opis:</h5>
+        <div class="card-body Register-Card-Body">
+
+            <form method="post" action="@Url.Action(" EditDescription","VeheliceWorkShop")">
+                <ul class="list-group list-group-flush tekstNaSrodku table alight: center">
+                    <li class="list-group-item tloTabelkiWarsztatu"><p>openHour</p></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><input type="text" name="openHour" value="@ViewBag.Opis.openHour" class="okienkoFormularza" /></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><p>closeHour</p></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><input type="text" name="closeHour" value="@ViewBag.Opis.closeHour" class="okienkoFormularza" /></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><p>Opis</p></li>
+                    <li class="list-group-item tloTabelkiWarsztatu"><input type="text" name="description" value="@ViewBag.Opis.descriptionBody" class="okienkoFormularza" /></li>
+                    <li class="list-group-item tloTabelkiWarsztatu tekstPrzycisku"><input type="submit" value="Aktualizuj" class="btn btn-secondary respansywnyButton" /></li>
+                </ul>
+            </form>
+
+        </div>
+    </div>
+</section>
+

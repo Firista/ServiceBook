@@ -1,0 +1,143 @@
+﻿@model Tuple<ServiceBook.Models.Users, ServiceBook.Models.Role>
+
+    @{
+    ViewBag.Title = "ShowAllUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <section class="row col-12">
+
+        <div class="card col-9 Register-Card mx-auto">
+            <h5 class="card-header Register-Card-Header">Wszyscy użytkownicy:</h5>
+            <div class="card-body Register-Card-Body">
+                @using (Html.BeginForm("ShowAllUsers", "Admin", FormMethod.Post))
+                {
+                <table class=" paddingNaZero table alight: left">
+                    <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item1.name)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item1.surname)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item1.email)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.roleName)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        Edytuj dane:
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        Przydziel rolę:
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+
+                    @foreach (var allUsers in ViewBag.AllUsers)
+                    {
+                    <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @allUsers.name
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @allUsers.surname
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @allUsers.email
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @allUsers.roleName
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" EditUserInfo", "Admin" , new { id=allUsers.userId })" class="btn btn-secondary respansywnyButton" role="button"><p>Edytuj</p></a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: up">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" GiveRoleCustomer", "Admin" , new { id=allUsers.userId })" class="btn btn-secondary respansywnyButton" role="button"><p>Użytkownik</p></a>
+                                </li>
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" GiveRoleWorkshop", "Admin" , new { id=allUsers.userId })" class="btn btn-secondary respansywnyButton" role="button"><p>Właściciel warsztatu</p></a>
+                                </li>
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" GiveRoleAdmin", "Admin" , new { id=allUsers.userId })" class="btn btn-secondary respansywnyButton" role="button"><p>Admin</p></a>
+                                </li>
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" GiveRoleBanned", "Admin" , new { id=allUsers.userId })" class="btn btn-secondary respansywnyButton" role="button"><p>Zbanuj</p></a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    }
+
+                </table>
+                }
+            </div>
+        </div>
+
+    </section>

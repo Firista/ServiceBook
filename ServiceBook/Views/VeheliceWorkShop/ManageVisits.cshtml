@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "ManageVisits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="row col-12">
+    <div class="card col-6 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Moje wizyty:</h5>
+        <div class="card-body Register-Card-Body">
+            @foreach (var visit in @ViewBag.visitFullData)
+            {
+                string dataTerminu = @visit.visit.visitTerm.ToString("yyyy-MM-dd");
+                string value = "" + @visit.visitConversation.conversationId;
+                <div class="row tekstNaSrodku wiekszeLitery">
+                    <label class="tekstNaSrodku wiekszeLitery">@visit.client.name</label>
+                    <label class="tekstNaSrodku wiekszeLitery">@visit.client.surname</label>
+                    <form action="@Url.Action("SetDateForVisit","VeheliceWorkShop")" method="post" )>
+                        <table>
+                            <tr class="tekstNaSrodku">
+                                <td>
+                                    <input name="termin" type="date" value="@dataTerminu" class="row col-12" />
+                                </td>
+                                <td>
+                                    <button name="visitId" type="submit" value="@visit.visit.visitId" class="btn btn-secondary respansywnyButton">Ustaw Termin</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+
+                    @Ajax.ActionLink("Show Messege", "WorkShopMesseges4", "VeheliceWorkShop",new { id= @value }, new AjaxOptions()
+               {
+                   HttpMethod ="Get",
+                   UpdateTargetId= "ModalBodyid",
+                   InsertionMode = InsertionMode.Replace
+               }, new { @class = "btn btn-secondary respansywnyButton", @id = "SendValue", @name = "conversationId", @data_toggle= "modal", @data_target= "#Modalid" }
+                   )
+
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+<div class="modal fade" id="Modalid" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"></button>
+                <h4 class="modal-title" id="ModalLabelid">Modal title</h4>
+            </div>
+            <div class="modal-body" id="ModalBodyid">
+                aa
+            </div>
+        </div>
+    </div>
+
+</div>

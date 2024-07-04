@@ -1,0 +1,26 @@
+﻿@model ServiceBook.Models.VeheliceWorkshpos
+
+<div class="card col-5 Register-Card mx-auto">
+    <h5 class="card-header">Stwórz użytkownika, który będzie zarządzał warsztatem</h5>
+    <div class="card-body">
+        @using(Html.BeginForm("RegisterWorkshop", "Register", FormMethod.Post))
+        {
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(x => x.workshopName, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.workshopName, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.NIP, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.NIP, new { @class = "form-control" })
+            </div>
+
+            <input type="submit" value="Rejestracja" class="btn btn-secondary" />
+        </div>
+        }
+    </div>
+</div>
+

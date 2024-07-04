@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "MyVisits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Moje wizyty:</h5>
+        <div class="card-body Register-Card-Body">
+
+            @foreach (var visit in @ViewBag.Myvisits)
+            {
+                string value = "" + @visit.visitId;
+                <ul class="list-group list-group-flush tekstNaSrodku">
+                    <li class="list-group-item tloTabelkiWarsztatu">
+                        <p>@visit.workshop.workshopName</p>
+                    </li>
+
+                    @if (visit.visitDate != "1990.1.1")
+                    {
+                        <li class="list-group-item tloTabelkiWarsztatu">
+                            <p>@visit.visitDate</p>
+                        </li>
+                    }
+                    <li class="list-group-item tloTabelkiWarsztatu">
+                        <form action="@Url.Action("Messeges","Customer")" method="post">
+                            <button type="submit" name="visitId" value="@visit.visitId" class="btn btn-secondary respansywnyButton">wiadomosci</button>
+                        </form>
+                    </li>
+                    <li class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Ajax.ActionLink("Show Messege", "Messeges1", "Customer", new { id= @value }, new AjaxOptions()
+                   {
+                       HttpMethod ="Get",
+                       UpdateTargetId= "ModalBodyid",
+                       InsertionMode = InsertionMode.Replace
+                   }, new { @class = "btn btn-secondary respansywnyButton", @id = "SendValue", @name = "conversationId", @data_toggle= "modal", @data_target= "#Modalid" }
+)
+
+                    </li>
+
+                </ul>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="Modalid" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"></button>
+                <h4 class="modal-title" id="ModalLabelid">Modal title</h4>
+            </div>
+            <div class="modal-body" id="ModalBodyid">
+                aa
+            </div>
+        </div>
+    </div>
+
+</div>

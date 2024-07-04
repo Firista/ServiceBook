@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "ShowMessegeForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ShowMessegeForm</h2>
+
+<section class="col-12">
+
+    <form action="@Url.Action(" FirstMessege","Customer")" method="post">
+        <input type="text" name="messegeBody" />
+        <button type="submit" name="ownerId" value="@ViewBag.Onwer_Id" class="btn btn-secondary respansywnyButton"> Wyslij wiadomosc</button>
+
+    </form>
+
+</section>

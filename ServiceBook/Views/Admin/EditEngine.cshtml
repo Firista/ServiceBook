@@ -1,0 +1,46 @@
+﻿@model ServiceBook.Models.Engines
+
+@{
+    ViewBag.Title = "EditEngine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Wprowadź nowe dane silnika:</h5>
+        <div class="card-body Register-Card-Body">
+
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.engineId)
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.engineName, htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.EditorFor(model => model.engineName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.engineName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                        <input type="submit" value="Save" class="btn btn-secondary respansywnyButton" />
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <a class="btn btn-secondary respansywnyButton" role="button" href="@Url.Action(" ShowAllEngines", "Admin" )"><p>Anuluj</p></a>
+            </div>
+        </div>
+    </div>
+
+</section>

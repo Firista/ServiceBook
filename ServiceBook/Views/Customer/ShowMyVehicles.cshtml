@@ -1,0 +1,135 @@
+﻿@model Tuple<ServiceBook.Models.Vehelices, ServiceBook.Helpers.CarHelper>
+
+    @{
+    ViewBag.Title = "ShowMyVehicles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <section class="row col-12">
+
+        <div class="card col-8 Register-Card mx-auto">
+            <h5 class="card-header Register-Card-Header">Moje samochody:</h5>
+            <div class="card-body Register-Card-Body">
+                @using (Html.BeginForm("ShowMyVehicles", "Customer", FormMethod.Post))
+                {
+                <table class=" paddingNaZero marginesLewy">
+                    <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.markName)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.veheliceName)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.engineCapacity)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.engineName)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                        <th>
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @Html.DisplayNameFor(Tuple => Tuple.Item2.productionYear)
+                                    </p>
+                                </li>
+                            </ul>
+                        </th>
+                    </tr>
+
+                    @foreach (var ListOfUserVehelices in ViewBag.mojeSamochody)
+                    {
+                    <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @ListOfUserVehelices.markName
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @ListOfUserVehelices.veheliceName
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @ListOfUserVehelices.engineCapacity
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @ListOfUserVehelices.engineName
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero wiekszeLitery">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <p>
+                                        @ListOfUserVehelices.productionYear
+                                    </p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="paddingNaZero">
+                            <ul class="list-group list-group-flush tekstNaSrodku table alight: center">
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" Edit", "Customer" , new { id=ListOfUserVehelices.veheliceId })" class="btn btn-secondary respansywnyButton" role="button">
+                                        <p>Edytuj</p>
+                                    </a>
+                                </li>
+                                <li class="list-group-item tloTabelkiWarsztatu">
+                                    <a href="@Url.Action(" Delete", "Customer" , new { id=ListOfUserVehelices.veheliceId })" class="btn btn-secondary respansywnyButton" role="button">
+                                        <p>Usuń</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    }
+
+                </table>
+                }
+            </div>
+        </div>
+
+    </section>
+

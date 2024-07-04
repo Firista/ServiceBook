@@ -1,0 +1,30 @@
+﻿@model ServiceBook.Models.VeheliceWorkshpos
+
+@{
+    ViewBag.Title = "EditWorkshop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BanningWorkshop</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>VeheliceWorkshpos</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.veheliceWorkshpoId)
+
+    <div class="form-group">
+        <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+            <input type="submit" value="Save" class="btn btn-secondary respansywnyButton" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

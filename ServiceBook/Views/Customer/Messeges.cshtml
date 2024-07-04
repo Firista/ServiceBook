@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Messeges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Moje wiadomości:</h5>
+        <div class="card-body Register-Card-Body">
+
+            <table class="table tekstNaSrodku">
+                <tr class="tekstNaSrodku">
+                    <th>
+                        <p>
+                            Treść wiadomości:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Imię nadawcy:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Nazwisko nadawcy:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Data wysłania wiadomości:
+                        </p>
+                    </th>
+                </tr>
+
+                @foreach (var messege in @ViewBag.Messeges)
+                {
+                    <tr class="tekstNaSrodku">
+                        <td>
+                            @messege.text
+                        </td>
+                        <td>
+                            @messege.name
+                        </td>
+                        <td>
+                            @messege.surname
+                        </td>
+                        <td>
+                            @messege.date
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div>
+                <form action="@Url.Action("SendMessage","Customer")" method="post" class="row col-12">
+                    <input type="text" name="messegeBody" value="" class="row col-12" />
+                    <button type="submit" name="ConverationId" value="@ViewBag.Conversationid" class="btn btn-secondary respansywnyButton">Wyślij</button>
+                </form>
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <a class="btn btn-secondary respansywnyButton" role="button" href="@Url.Action("MyVisits", "Customer")"><p>Wróć</p></a>
+            </div>
+
+        </div>
+</section>

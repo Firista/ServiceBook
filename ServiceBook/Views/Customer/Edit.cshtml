@@ -1,0 +1,78 @@
+﻿@model ServiceBook.Models.Vehelices
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Wprowadź nowe dane samochodu</h5>
+        <div class="card-body Register-Card-Body">
+
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.veheliceId)
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.markId, "markId", htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.DropDownList("markId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.markId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.veheliceName, htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.EditorFor(model => model.veheliceName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.veheliceName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.engineId, "engineId", htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.DropDownList("engineId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.engineId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.engineCapacity, htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.EditorFor(model => model.engineCapacity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.engineCapacity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(model => model.productionYear, htmlAttributes: new { @class = "label label-default" })
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                        @Html.EditorFor(model => model.productionYear, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.productionYear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                    <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                        <input type="submit" value="Save" class="btn btn-secondary respansywnyButton" role="button" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <a class="btn btn-secondary respansywnyButton" role="button" href="@Url.Action(" ShowMyVehicles", "Customer" )"><p>Anuluj</p></a>
+            </div>
+
+            }
+        </div>
+    </div>
+
+</section>

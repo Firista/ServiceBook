@@ -1,0 +1,59 @@
+﻿@model ServiceBook.Models.Services
+
+@{
+    ViewBag.Title = "ShowAllServices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Dostępne usługi:</h5>
+        <div class="card-body Register-Card-Body">
+            @using (Html.BeginForm("ShowAllServices", "Admin", FormMethod.Post))
+            {
+            <table class=" paddingNaZero table alight: center">
+                <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: center">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.serviceName)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                </tr>
+
+                @foreach (var services in ViewBag.AllServices)
+                {
+                <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @services.serviceName
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <a href="@Url.Action(" Editservice", "Admin" , new { id=services.serviceId })" class="btn btn-secondary respansywnyButton" role="button"><p>Edytuj</p></a>
+                            </li>
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <a href="@Url.Action(" DeleteService", "Admin" , new { id=services.serviceId })" class="btn btn-secondary respansywnyButton" role="button"><p>Usuń</p></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                }
+            </table>
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <a href="@Url.Action(" AddService", "Admin" )" class="btn btn-secondary respansywnyButton" role="button"><p>Dodaj</p></a>
+            </div>
+            }
+        </div>
+    </div>
+</section>

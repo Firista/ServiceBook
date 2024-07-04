@@ -1,0 +1,17 @@
+﻿@foreach (var messege in @ViewBag.Messeges)
+{
+
+<div>
+    <label> @messege.date: </label>
+    <label> @messege.name: </label>
+    <label> @messege.surname: </label>
+    <label> @messege.text: </label>
+
+</div>
+}
+<div>
+    <form action="@Url.Action(" SendMessage","Customer")" method="post">
+        <input type="text" name="messegeBody" value="" />
+        <button type="submit" name="ConverationId" value="@ViewBag.Conversationid">Wyslij wiadomosc</button>
+    </form>
+</div>

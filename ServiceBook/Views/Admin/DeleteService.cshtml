@@ -1,0 +1,40 @@
+﻿@model ServiceBook.Models.Services
+
+@{
+    ViewBag.Title = "DeleteService";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Czy jestes pewny, że chcesz usunąć wybraną usługę?</h5>
+        <div class="card-body Register-Card-Body">
+            <div>
+                <dl class="dl-horizontal">
+
+                    <dd>
+                        @Html.DisplayFor(model => model.serviceName)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+
+                <div class="nav flex-column table alight: left">
+                    <input class="btn btn-secondary respansywnyButton" type="submit" value="Delete" />
+                </div>
+                }
+            </div>
+
+            <div class="nav flex-column table alight: left">
+                <a href="../../Admin/ShowAllServices" class="btn btn-secondary respansywnyButton" role="button"><p>Anuluj</p></a>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>

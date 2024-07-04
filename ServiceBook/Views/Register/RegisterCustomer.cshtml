@@ -1,0 +1,50 @@
+﻿@model ServiceBook.Models.Users
+@{
+    ViewBag.Title = "RegisterCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Rejestracja Użytkownika</h5>
+        <div class="card-body Register-Card-Body">
+            @using (Html.BeginForm("RegisterCustomer", "Register", FormMethod.Post))
+            {
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                @Html.LabelFor(x => x.name, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.name, new { @class = "form-control" })
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+
+                @Html.LabelFor(x => x.surname, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.surname, new { @class = "form-control" })
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                @Html.LabelFor(x => x.email, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+            </div>
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                @Html.LabelFor(x => x.password, new { @class = "label label-default" })
+
+                @Html.PasswordFor(x => x.password, new { @class = "form-control" })
+
+            </div>
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <input type="submit" value="Zarejestruj się" class="btn btn-secondary respansywnyButton" />
+            </div>
+            }
+        </div>
+    </div>
+
+
+
+
+</section>
+

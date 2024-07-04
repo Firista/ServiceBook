@@ -1,0 +1,79 @@
+﻿@model Tuple<ServiceBook.Models.Vehelices, ServiceBook.Models.Marks, ServiceBook.Models.Engines>
+
+@{
+    ViewBag.Title = "UserCars";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto">
+        <h5 class="card-header Register-Card-Header">Wprowadź dane samochodu</h5>
+        <div class="card-body Register-Card-Body">
+            @using (Html.BeginForm("AddCar", "Customer", FormMethod.Post))
+            {
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    <p>
+                        Wybierz markę samochodu:
+                    </p>
+                    <select id="Marks" name="Marks" class="list-group list-group-flush tekstNaSrodku odstepyListaRozwijana">
+
+                        @foreach (var result in ViewBag.marki)
+                        {
+                            <option value="@result.markId">
+                                @result.markName
+                            </option>
+                        }
+
+                    </select>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(Tuple => Tuple.Item1.veheliceName, new { @class = "label label-default" })
+
+                    @Html.TextBoxFor(Tuple => Tuple.Item1.veheliceName, new { @class = "form-control" })
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    <p>
+                        Wybierz rodzaj silnika:
+                    </p>
+                    <select id="Engines" name="Engines" class="list-group list-group-flush tekstNaSrodku odstepyListaRozwijana">
+                        @foreach (var silniki in ViewBag.silniki)
+                        {
+
+                            <option value="@silniki.engineId">
+
+                                @silniki.engineName
+
+                            </option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(Tuple => Tuple.Item1.engineCapacity, new { @class = "label label-default" })
+
+                    @Html.TextBoxFor(Tuple => Tuple.Item1.engineCapacity, new { @class = "form-control" })
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy">
+                    @Html.LabelFor(Tuple => Tuple.Item1.productionYear, new { @class = "label label-default" })
+
+                    @Html.TextBoxFor(Tuple => Tuple.Item1.productionYear, new { @class = "form-control" })
+                </div>
+
+                <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy paddingZero">
+                    <input value="Dodaj samochód" class="btn btn-secondary respansywnyButton" type="submit" />
+                </div>
+            }
+
+            <div class="list-group list-group-flush tekstNaSrodku odstepy duzeMarginesy">
+                <a class="btn btn-secondary respansywnyButton" role="button" href="@Url.Action("ShowMyVehelices", "Customer")"><p>Anuluj</p></a>
+            </div>
+
+        </div>
+    </div>
+
+</section>

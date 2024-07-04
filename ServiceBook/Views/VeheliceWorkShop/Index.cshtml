@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-5 Register-Card mx-auto tekstNaSrodku">
+        <h5 class="card-header Register-Card-Header">Informacje o moim warsztacie:</h5>
+        <div class="card-body Register-Card-Body">
+
+            <ul class="list-group list-group-flush tekstNaSrodku">
+                <li class="list-group-item tloTabelkiWarsztatu"><p>@ViewBag.Opis.descriptionBody</p></li>
+                <li class="list-group-item tloTabelkiWarsztatu"><p>@ViewBag.Opis.openHour</p></li>
+                <li class="list-group-item tloTabelkiWarsztatu"><p>@ViewBag.Opis.closeHour</p></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="card col-5 Register-Card mx-auto tekstNaSrodku">
+        <h5 class="card-header Register-Card-Header">Moje wizyty:</h5>
+        <div class="card-body Register-Card-Body">
+
+            <table class="table">
+                <tr class="tekstNaSrodku">
+                    <th>
+                        <p>
+                            Imię klienta:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Nazwisko klienta:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Data wizyty:
+                        </p>
+                    </th>
+                </tr>
+
+                @foreach (var visits in @ViewBag.Wizyty)
+                {
+
+
+                    <tr class="tekstNaSrodku">
+                        <td>
+                            @visits.clientName
+                        </td>
+                        <td>
+                            @visits.clientSurname
+                        </td>
+                        <td>
+                            @visits.vistDate
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+
+</section>

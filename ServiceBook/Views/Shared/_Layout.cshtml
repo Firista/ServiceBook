@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+
+<html lang="pl">
+
+<head>
+    <title>ServiceBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="shortcut icon" href="https://thumbs.dreamstime.com/z/kresk%C3%B3wka-samochodowego-mechanika-charakter-63107926.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../Content/Layout.css" type="text/css" />
+    <link rel="stylesheet" href="../../Content/Login.css" type="text/css" />
+</head>
+
+<body class="container-fluid usunMarginesy">
+
+    <header class="row pasekGorny">
+
+        <div class="col-8 logo">
+            <h1>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                {
+                    <a href="@Url.Action("Index","Customer")"><span class="bolder">SERWIS WARSZTATÓW SAMOCHODOWYCH</span></a>
+
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Workshop"))
+                {
+                    <a href="@Url.Action("Index","VeheliceWorkShop")"><span class="bolder">SERWIS WARSZTATÓW SAMOCHODOWYCH</span></a>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Workshop"))
+                {
+                    <a href="@Url.Action("Index","Admin")"><span class="bolder">SERWIS WARSZTATÓW SAMOCHODOWYCH</span></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index","Guest")"><span class="bolder">SERWIS WARSZTATÓW SAMOCHODOWYCH</span></a>
+                }
+            </h1>
+        </div>
+
+        <div class="col-4 row logowanie">
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul class="nav justify-content-end tabelaLogowania table alight: right">
+                    <li class="nav-item"><a href="@Url.Action("LogOut","Login")" class="nav-link disabled przyciskiLogowania" role="button"><p>Wyloguj</p></a></li>
+                </ul>
+            }
+
+        </div>
+
+
+    </header>
+
+    <section class="row main">
+
+        <div class="col-2 menuBoczne">
+            <ul class="nav flex-column opcjeLogowania tabelaLogowania table alight: top">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item"><a class="nav-link disabled przyciskMenu" role="button"><p class="bolderPrzyciskMenu">MENU:</p></a></li>
+                }
+
+                else
+                {
+                    <li class="nav-item"><a href="@Url.Action("RegisterCustomer","Register")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarejestruj się</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("RegisterWorkShop","Register")" class="nav-link disabled przyciskiWMenu" role="button"><p>Rejstracja Warsztatu</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("Login","Login")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zaloguj się</p></a></li>
+                }
+                @if (User.IsInRole("Customer"))
+                {
+                    <li class="nav-item"><a href="@Url.Action("ShowAllWorkshops","Customer")" class="nav-link disabled przyciskiWMenu"><p>Dostępne warsztaty</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("AddCar","Customer")" class="nav-link disabled przyciskiWMenu"><p>Dodaj swój samochód</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowMyVehicles","Customer")" class="nav-link disabled przyciskiWMenu"><p>Moje samochody</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("MyVisits","Customer")" class="nav-link disabled przyciskiWMenu"><p>Mój terminarz wizyt</p></a></li>
+                }
+                @if (User.IsInRole("Workshop"))
+                {
+
+                    <li class="nav-item"><a href="@Url.Action("Index","VeheliceWorkShop")" class="nav-link disabled przyciskiWMenu" role="button"><p>Mój warsztat</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("EditDescription","VeheliceWorkShop")" class="nav-link disabled przyciskiWMenu" role="button"><p>Edycja opisu</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("EditServices","VeheliceWorkShop")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj usługami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ManageVisits","VeheliceWorkShop")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj wizytami</p></a></li>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item"><a href="@Url.Action("ShowAllWorkshops","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj warsztatami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowAllUsers","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj użytkownikami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowAllVehelices","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj samochodami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowAllMarks","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj markami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowAllEngines","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj silnikami</p></a></li>
+                    <li class="nav-item"><a href="@Url.Action("ShowAllServices","Admin")" class="nav-link disabled przyciskiWMenu" role="button"><p>Zarządzaj usługami</p></a></li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-8 informacjeGlowne marginesy" id="ReplaceDiv">
+
+
+            @RenderBody()
+
+        </div>
+
+
+    </section>
+
+    <footer class="row stopka">
+
+        <div class="stopka">
+            <p>Informacje kontaktowe.</p>
+        </div>
+
+    </footer>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

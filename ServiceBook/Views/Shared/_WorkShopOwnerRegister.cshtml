@@ -1,0 +1,41 @@
+﻿
+@model ServiceBook.Models.Users
+<div class="card col-5 Register-Card mx-auto">
+    <h5 class="card-header">Stwórz użytkownika, który będzie zarządzał warsztatem</h5>
+    <div class="card-body">
+
+        @using (Html.BeginForm("RegisterWorkshopOwner", "Register", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.name, new { @class = "label label-default" })
+
+                    @Html.TextBoxFor(x => x.name, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(x => x.surname, new { @class = "label label-default" })
+
+                    @Html.TextBoxFor(x => x.surname, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.email, new { @class = "label label-default" })
+
+                @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.password, new { @class = "label label-default" })
+
+                @Html.PasswordFor(x => x.password, new { @class = "form-control" })
+
+            </div>
+
+            <input type="submit" value="Dalej" class="btn btn-secondary" id="toWorkshopData" />
+        }
+    </div>
+</div>
+

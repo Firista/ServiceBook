@@ -1,0 +1,189 @@
+﻿@model ServiceBook.Helpers.VeheliceWorkshopHelper
+
+@{
+    ViewBag.Title = "ShowAllWorkshops";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row col-12">
+
+    <div class="card col-15 Register-Card marginesLewy">
+        <h5 class="card-header Register-Card-Header">Dostępne warsztaty</h5>
+        <div class="card-body Register-Card-Body">
+            @using (Html.BeginForm("ShowAllWorkshops", "Customer", FormMethod.Post))
+            {
+            <table class=" paddingNaZero">
+                <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.workshopName)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.NIP)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.userName)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.userSurname)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.openHour)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.closeHour)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                    <th>
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.serviceNames)
+                                </p>
+                            </li>
+                        </ul>
+                    </th>
+                </tr>
+
+                @foreach (var ListOfWorkshopsWithTheirServices in ViewBag.AllWorkshops)
+                {
+                string value = "" + @ListOfWorkshopsWithTheirServices.NIP;
+
+                <tr class="tekstNaSrodku paddingNaZero wiekszeLitery">
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.workshopName
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.NIP
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.userName
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.userSurname
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.openHour
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <p>
+                                    @ListOfWorkshopsWithTheirServices.closeHour
+                                </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group-item tloTabelkiWarsztatu">
+                                <ul class="list-group list-group-flush tekstNaSrodku table alight: left">
+                                    @foreach (var serviceName in ListOfWorkshopsWithTheirServices.serviceNames)
+                                    {
+                                    <li class="list-group-item tloTabelkiWarsztatu">
+                                        @serviceName.serviceName
+                                    </li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="paddingNaZero wiekszeLitery">
+                        <ul class="list-group list-group-flush tekstNaSrodku table alight: down">
+                            <li class="list-group list-group-flush tekstNaSrodku odstepy">
+                                @Ajax.ActionLink("Pokaż wiadomości", "ShowMessegeForm1", "Customer", new { id = @value }, new AjaxOptions()
+                                {
+                                HttpMethod = "Get",
+                                UpdateTargetId = "ModalBodyid",
+                                InsertionMode = InsertionMode.Replace
+                                }, new {@class = "btn btn-secondary przyciskiFormularzy", @id = "SendValue", @name = "conversationId", @data_toggle = "modal", @data_target = "#Modalid" })
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                }
+            </table>
+            }
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="Modalid" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"></button>
+                <h4 class="modal-title" id="ModalLabelid">Modal title</h4>
+            </div>
+            <div class="modal-body" id="ModalBodyid">
+                aa
+            </div>
+
+
+        </div>
+    </div>
+</div>
